@@ -34,3 +34,5 @@ import modules
 
 
 modules.app_splash()
+modules.player_names()
+print(modules.user_scores)
