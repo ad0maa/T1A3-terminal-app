@@ -1,38 +1,31 @@
-#Imports
+# Splash screen
 
-import modules
+# Get user input on if order is pickup or delivery (build object based on answers)
 
+print("Hello and Welcome to Curries 'R Us!")
+print(input.lower(('Are you wanting to order Takeaway or Delivery?')))
+order_type = input().lower()
 
-# Application Splash Screen 
+if order_type == 'pickup':
+    print('Pickup order')
+elif order_type == 'delivery':
+    print('Delivery order')
 
-# Get Users to input names and store in Dictionary with scores set to zero
+# Ask User what part of the menu they would like to display (Entree, Main, Dessert, Drinks)
 
-# Exceptions handling for user input
+# Ask user if they have allergies, only display items that are appropriate to the user
 
-# generate random player to begin first (only on first load, then winner plays first)
+# Display the menu to user and ask them if they'd like to order something from this menu
 
-# Print game board and wait wait for user input
+# Add menu items to order object
 
-# Winner player to select first move
+# Ask user if they want to order something else?
 
-# Check if there is 3 in a row horizontally, vertically or diagonal
+# Repeat above steps until user has finished ordering
 
-# Store move and print game board updated with position of move
+# If Delivery, add delivery fee to the order
 
-# Second player selects position
+# Produce a receipt and output receipt to a text file
 
-# repeats above code until player wins
+# Using datetime, give an estimate of when the order will be ready or delivered
 
-# Update scoreboard with the winner 
-
-# Once game complete, ask if players want to play again
-
-# IF no, present Winner with winner screen 
-
-# End application
-
-
-
-modules.app_splash()
-modules.player_names()
-print(modules.user_scores)
