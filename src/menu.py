@@ -6,6 +6,8 @@ class Menu:
         self.description = description
         self.category = category
 
+        def 
+
 class Drink(Menu):
 
     def __init__(self, name, price, description, category, volume, alc_percent):
@@ -18,3 +20,4 @@ class Food(Menu):
     def __init__(self, name, price, description, category, serve_size):
         super().__init__(name, price, description, category)
         self.serve_size = serve_size
+

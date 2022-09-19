@@ -1,15 +1,29 @@
-# Splash screen
+import menuitems 
 
+# Splash screen
+print("Hello and Welcome to Curries 'R Us!")
 # Get user input on if order is pickup or delivery (build object based on answers)
 
-print("Hello and Welcome to Curries 'R Us!")
-print(input.lower(('Are you wanting to order Takeaway or Delivery?')))
-order_type = input().lower()
+def ordertype():
+    order_type = input("Do you want to order Pickup or Delivery?")
 
-if order_type == 'pickup':
-    print('Pickup order')
-elif order_type == 'delivery':
-    print('Delivery order')
+    while True:
+        if order_type.lower() == 'pickup':
+            print('Pickup order')
+            order_type = 'pickup'
+            return (order_type)
+
+        elif order_type.lower() == 'delivery':
+            print('Delivery order')
+            order_type = 'delivery'
+            return (order_type)
+        else:
+            print("Please enter either 'pickup' or 'delivery'")
+            break
+
+ordertype()
+# print(order_type)
+print(menuitems.pappadums.__dict__)
 
 # Ask User what part of the menu they would like to display (Entree, Main, Dessert, Drinks)
 
