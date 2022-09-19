@@ -1,3 +1,8 @@
+#Imports
+
+import modules
+
+
 # Application Splash Screen 
 
 # Get Users to input names and store in Dictionary with scores set to zero
@@ -25,3 +30,7 @@
 # IF no, present Winner with winner screen 
 
 # End application
+
+
+
+modules.app_splash()
