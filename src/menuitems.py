@@ -3,12 +3,14 @@ import menu
 # Create menu items
 
 #Entrees
+
 karaage = menu.Menu('Karaage Chicken', 8,'Entree', False,  False)
 edamame = menu.Menu('Edamame', 6, 'Entree', True, True)
 beef_tataki = menu.Menu('Beef Tataki', 10, 'Entree', False, True)
 pork_gyoza = menu.Menu('Pork Gyoza', 7, 'Entree', False, False)
 veggie_gyoza = menu.Menu('Vegetarian Gyoza', 7, 'Entree', True, False)
 age_tofu = menu.Menu('Agedashi Todu', 8.5, 'Entree', True, True)
+
 
 # Ramen
 tonk_ramen = menu.Menu('Tonkatsu Ramen', 17, 'Ramen', False, False)
@@ -37,4 +39,14 @@ coke_zero = menu.Menu('Coca-Cola Zero', 3, 'Drinks', True, True)
 sprite = menu.Menu('Sprite', 3, 'Drinks', True, True)
 ginger_beer = menu.Menu('Gingerbeer', 4, 'Drinks', True, True)
 iced_tea = menu.Menu('Iced Tea', 4, 'Drinks', True, True)
+
+
+items = [karaage, edamame, beef_tataki, pork_gyoza, veggie_gyoza, age_tofu, tonk_ramen, spicy_ramen, chick_ramen, miso_ramen, veggie_ramen, katsu_don, beef_curry, teri_chicken, bento_box, tuna_roll, cali_roll, vege_roll, prawn_roll, salmon_sash, coke, coke_zero, sprite, ginger_beer, ginger_beer, iced_tea]
+
+
+
+print(f"{karaage.name} ${karaage.price}")
+# print(entrees.name + entrees.price)
+
+# menu.Menu.print_menu(karaage)
 
