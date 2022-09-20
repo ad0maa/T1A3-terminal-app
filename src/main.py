@@ -1,11 +1,24 @@
+#Import
 import menuitems 
+import clearing
+#clearing.clear()
+
+# Variables
+order_type = ''
 
 # Splash screen
 print("Hello and Welcome to our Japanese Restaurant")
+
+
+# CIL Menu
+
+
+
 # Get user input on if order is pickup or delivery (build object based on answers)
 
 def ordertype():
-    order_type = input("Do you want to order Pickup or Delivery?")
+    global order_type
+    order_type = input("Would you like to order Pickup or Delivery?")
     if order_type.lower() == 'pickup':
         print('Pickup order selected')
         order_type = 'pickup'
@@ -17,11 +30,14 @@ def ordertype():
         return order_type
     else:
         print("Please enter either 'pickup' or 'delivery'")
-        
 
-ordertype()
-print(order_type)
+
+# WORKING CODE HERE
+# ordertype()
+# print(order_type)
 print(menuitems.cali_roll.__dict__)
+
+
 
 # Ask User what part of the menu they would like to display (Entree, Main, Dessert, Drinks)
 
