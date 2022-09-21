@@ -41,12 +41,21 @@ ginger_beer = menu.Menu('Gingerbeer', 4, 'Drinks', True, True)
 iced_tea = menu.Menu('Iced Tea', 4, 'Drinks', True, True)
 
 
-items = [karaage, edamame, beef_tataki, pork_gyoza, veggie_gyoza, age_tofu, tonk_ramen, spicy_ramen, chick_ramen, miso_ramen, veggie_ramen, katsu_don, beef_curry, teri_chicken, bento_box, tuna_roll, cali_roll, vege_roll, prawn_roll, salmon_sash, coke, coke_zero, sprite, ginger_beer, ginger_beer, iced_tea]
+menu_list = [karaage, edamame, beef_tataki, pork_gyoza, veggie_gyoza, age_tofu, tonk_ramen, spicy_ramen, chick_ramen, miso_ramen, veggie_ramen, katsu_don, beef_curry, teri_chicken, bento_box, tuna_roll, cali_roll, vege_roll, prawn_roll, salmon_sash, coke, coke_zero, sprite, ginger_beer, ginger_beer, iced_tea]
+
+# menu_list = [karaage, edamame, beef_tataki, pork_gyoza, veggie_gyoza, age_tofu]
+
+items = [karaage, edamame, beef_tataki, miso_ramen, veggie_ramen]
+
+# for food in items:
+#     menu.food.print_menu("Entree")
 
 
+for food in menu_list:
+    menu.food.print_menu("Main")
 
-print(f"{karaage.name} ${karaage.price}")
-# print(entrees.name + entrees.price)
+# print(f"{karaage.name} ${karaage.price}")
+# # print(entrees.name + entrees.price)
 
 # menu.Menu.print_menu(karaage)
 
