@@ -2,7 +2,7 @@
 # Welcome Message
 from ast import For
 from prettytable import PrettyTable
-
+from datetime import date
 
 print('Hello and Welcome to McDoogals')
 
@@ -61,14 +61,13 @@ def pickup_delivery(total_price):
     else: print(f'Your total is ${total_price}')
     return
 
-print_menu()
-total_price = order_food(order_items, total_price)
-pickup_delivery(total_price)
+
 
 
 # Produce a receipt and output receipt to a text file
 
 def print_receipt():
+    global table 
     table = PrettyTable(['Item', 'Price ($)'])
     for k,v in order_items.items():
         table.add_row([k,'$' + str(v)])
@@ -76,9 +75,17 @@ def print_receipt():
     table.add_row(['TOTAL', '$' + str(total_price)])
     print(table)
     print('Your total bill amount is $', total_price)
+    return
 
+today = date.today()
 
-print_receipt()
+def file_receipt():
+    with open('receipt.txt', 'w') as f:
+        f.write('McDoogals Receipt\n')
+        f.write(f'Date: {today.strftime("%B %d, %Y")}\n')
+
+        f.write(str(table))
+
 # Ask 
 
 # Exit Application
@@ -97,3 +104,9 @@ print_receipt()
 
 
 # gen_receipt()
+
+print_menu()
+total_price = order_food(order_items, total_price)
+pickup_delivery(total_price)
+print_receipt()
+file_receipt()
