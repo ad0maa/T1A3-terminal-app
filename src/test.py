@@ -9,14 +9,11 @@
 # print(order_total)
 
 
-order_items = ['Soda', 'Burger']
-order_total = 17.50
+order_items = {'Soda': 2, 'Burger' : 10}
+total_price = 17.50
 
-def gen_receipt():
-    receipt = []
-    for element in order_items:
-        if element in str(order_total):
-            receipt.append(element)
-            print(receipt)
+for entry, amount in order_items.items():
+    product = order_items.get(entry)
 
-gen_receipt()
+    print(f"{key} - {amount}x {name} - ${price}".format(key=entry, amount=amount, name=product['name'], price=product['price']))
+print("Total price is {} \n".format(subtotal))
