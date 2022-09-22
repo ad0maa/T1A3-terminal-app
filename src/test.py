@@ -7,13 +7,40 @@
 # order_total = add_delivery_fee(order_total)
 
 # print(order_total)
+from prettytable import PrettyTable
 
 
-order_items = {'Soda': 2, 'Burger' : 10}
+table = PrettyTable(['Item', 'Price ($)'])
+total = 0
+
+
+# order_items = (['Soda', 2],['Burger', 10])
 total_price = 17.50
 
-for entry, amount in order_items.items():
-    product = order_items.get(entry)
 
-    print(f"{key} - {amount}x {name} - ${price}".format(key=entry, amount=amount, name=product['name'], price=product['price']))
-print("Total price is {} \n".format(subtotal))
+order_items = {'Soda': 2, 'Burger': 10}
+for k,v in order_items.items():
+    table.add_row([k,v])
+
+table.add_row(['-'* 8,'-' * 8])
+table.add_row(['TOTAL', total_price])
+print(table)
+print('Your total bill amount is ', total_price, '/-')
+
+
+
+
+
+# def gen_receipt():
+#     # receipt = []
+#     # for element in order_items:
+#     #     if element in str(total_price):
+#     #         receipt.append(element)
+#     #         print(receipt)
+
+#     for key, value in order_items.items():
+#         print(key)
+#         print(value)
+#     print(str(order_items) + str(total_price))
+
+# gen_receipt()

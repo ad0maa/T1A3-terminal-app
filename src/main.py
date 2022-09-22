@@ -1,6 +1,7 @@
 
 # Welcome Message
 from ast import For
+from prettytable import PrettyTable
 
 
 print('Hello and Welcome to McDoogals')
@@ -39,7 +40,7 @@ def order_food(order_items, total_price):
         order_req = input()
         if order_req in menu:
             sub_total = menu[order_req]
-            total_price = total_price + sub_total
+            total_price += sub_total
             order_items.update({order_req : sub_total})
             print(f'Your order price is ${total_price}.')
             print(f'Your order items are {order_items}.')
@@ -54,30 +55,30 @@ def order_food(order_items, total_price):
 def pickup_delivery(total_price):
     x = input('Is your order delivery or pickup?')
     if x == 'delivery':
-        total_price = total_price + 7.50
+        total_price += 7.50
         print(f'Your total including delivery is ${total_price}')
         return
     else: print(f'Your total is ${total_price}')
+    return
 
+print_menu()
+total_price = order_food(order_items, total_price)
+pickup_delivery(total_price)
 
 
 # Produce a receipt and output receipt to a text file
 
-def gen_receipt():
-    receipt = []
-    for element in order_items:
-        if element in str(total_price):
-            receipt.append(element)
-            print(receipt)
-    print(str(order_items) + str(total_price))
+def print_receipt():
+    table = PrettyTable(['Item', 'Price ($)'])
+    for k,v in order_items.items():
+        table.add_row([k,'$' + str(v)])
+    table.add_row(['-'* 8,'-' * 8])
+    table.add_row(['TOTAL', '$' + str(total_price)])
+    print(table)
+    print('Your total bill amount is $', total_price)
 
 
-for entry, amount in order_items:
-    product = order_items.get(entry)
-
-    print(f"{key} - {amount}x {name} - ${price}".format(key=entry, amount=amount, name=product['name'], price=product['price']))
-print(f"Total price is {} \n".format(subtotal))
-
+print_receipt()
 # Ask 
 
 # Exit Application
@@ -94,7 +95,5 @@ print(f"Total price is {} \n".format(subtotal))
 # Ask if user is a member and apply discount price to the receipt
 
 
-print_menu()
-total_price = order_food(order_items, total_price)
-pickup_delivery(total_price)
-gen_receipt()
+
+# gen_receipt()
