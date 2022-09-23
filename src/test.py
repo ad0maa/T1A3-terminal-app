@@ -42,4 +42,24 @@ while True:
         # if input("Would you like to order anything else? [y/n]") != 'y':
         #     return total_price
 
+
+def print_receipt():
+    global table 
+    table = PrettyTable(['Item', 'Price ($)'])
+    for food,price in order_items:
+        table.add_row([food,'$' + str(price)])
+    table.add_row(['-'* 8,'-' * 8])
+    if delivery is True:
+        table.add_row(['DELIVERY', '$7.50'])
+        table.add_row(['-'* 8,'-' * 8])
+        table.add_row(['TOTAL', '$' + str(total_price) ])
+
+    else:
+        table.add_row(['TOTAL', '$' + str(total_price)])
+    print(table)
+    print('Your total bill amount is $', total_price)
+    return
+
+print_receipt()
 print(order_items)
+print(total_price)
