@@ -54,7 +54,7 @@ def print_menu():
 
 # Repeat above steps until user has finished ordering
 
-order_items = {}
+order_items = []
 total_price = 0
 delivery = False
 
@@ -65,9 +65,9 @@ def order_food(order_items, total_price):
         if order_req in menu:
             sub_total = menu[order_req]
             total_price += sub_total
-            order_items.update({order_req : sub_total})
+            order_items.append([order_req, sub_total])
+            # order_items.update({order_req : sub_total})
 
-            
             x = input('Would you like to [1] Order More? [2] Display Current Order? [3] Quit ')
             if x == '1':
                 print('What would you like to order next? ')
@@ -108,8 +108,8 @@ def pickup_delivery():
 def print_receipt():
     global table 
     table = PrettyTable(['Item', 'Price ($)'])
-    for k,v in order_items.items():
-        table.add_row([k,'$' + str(v)])
+    for food,price in order_items:
+        table.add_row([food,'$' + str(price)])
     table.add_row(['-'* 8,'-' * 8])
     if delivery is True:
         table.add_row(['DELIVERY', '$7.50'])
