@@ -1,13 +1,13 @@
 McFoo Receipt
-Order Placed: September 23, 2022 14:32:30
+Order Placed: September 23, 2022 14:57:01
 +----------+----------+
 |   Item   |  Price   |
 +----------+----------+
 |   Soda   |   $2.0   |
+|  Burger  |  $10.5   |
+|  Burger  |  $10.5   |
 | -------- | -------- |
-| DELIVERY |  $7.50   |
-| -------- | -------- |
-|  TOTAL   |   $9.5   |
+|  TOTAL   |  $23.0   |
 +----------+----------+
 Thank you for your order!
 McFoo Restaurants Australia

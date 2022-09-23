@@ -3,7 +3,7 @@
 from ast import For
 from datetime import datetime, date, timedelta
 from prettytable import PrettyTable
-import clearing
+# import clearing
 
 
 print('''
@@ -27,7 +27,7 @@ print('''
 \n\n''')
 print(input('Press any key to continue'))
 
-clearing.clear()
+# clearing.clear()
 print('Hello and Welcome to McDoogals\n')
 # Program Menu (Show Food menu, make an order, exit)
 
@@ -79,7 +79,6 @@ def order_food(order_items, total_price):
                 continue
             else:
                 return total_price
-
 
 
 # Ask if Delivery, add delivery fee to the order
@@ -134,18 +133,26 @@ def file_receipt():
 
 # Exit Application
 
-
 # EXTRAS ONCE BASIC PROGRAM IS RUNNING
 
 # Using datetime, give an estimate of when the order will be ready or delivered
+
+def ready_time():
+    now = datetime.now()
+    pickup_time = now + timedelta(minutes=20)
+    delivery_time = now + timedelta(minutes=40)
+    print('Order placed at ', now.strftime("%H:%M %d %B %Y"))
+    if delivery == True:
+        print('Your order will be delivered at approximately', delivery_time.strftime("%H:%M %d %B %Y"))
+    else:
+        print('Your order will be ready for pickup at', pickup_time.strftime("%H:%M %d %B %Y"))
+
 
 # Show what has been ordered so far, with sub-total price
 
 # Ask user if they have allergies, only display items that are appropriate to the user
 
 # Ask if user is a member and apply discount price to the receipt
-
-
 
 # gen_receipt()
 
@@ -155,13 +162,5 @@ if __name__ == '__main__':
     pickup_delivery()
     print_receipt()
     file_receipt()
+    ready_time()
 
-now = datetime.now().strftime("%Y-%m-%d, %H:%M")
-pickup_time = datetime.now() + timedelta(minutes=20)
-delivery_time = datetime.now() + timedelta(minutes=40)
-
-
-
-print('The time currently is', now.time())
-print('Your order will be ready for pickup at', pickup_time)
-print('Your order will be delivered at approximately', delivery_time)
