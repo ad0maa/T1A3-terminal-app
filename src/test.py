@@ -1,46 +1,45 @@
-# order_total = 10.00
-
-# def add_delivery_fee(order):
-#     order = order + 7.50
-#     return order
-
-# order_total = add_delivery_fee(order_total)
-
-# print(order_total)
+from ast import For
+from datetime import datetime, date
 from prettytable import PrettyTable
+import clearing
 
 
-table = PrettyTable(['Item', 'Price ($)'])
-total = 0
+menu = {
+    'Chips': 4.50,
+    'Nuggets' : 7.00,
+    'Burger' : 10.50,
+    'Soda' : 2.00
+}
 
-
-# order_items = (['Soda', 2],['Burger', 10])
-total_price = 17.50
-
-
-order_items = {'Soda': 2, 'Burger': 10}
-for k,v in order_items.items():
-    table.add_row([k,v])
-
-table.add_row(['-'* 8,'-' * 8])
-table.add_row(['TOTAL', total_price])
-print(table)
-print('Your total bill amount is ', total_price, '/-')
+order_items = []
+total_price = 0
+delivery = False
 
 
 
+print('\nWhat would you like to order today?')
 
+while True:
+    order_req = input()
+    if order_req in menu:
+        sub_total = menu[order_req]
+        total_price += sub_total
+        order_items.append([order_req, sub_total])
+        # order_items.update({order_req : sub_total})
 
-# def gen_receipt():
-#     # receipt = []
-#     # for element in order_items:
-#     #     if element in str(total_price):
-#     #         receipt.append(element)
-#     #         print(receipt)
+        x = input('Would you like to [1] Order More? [2] Display Current Order? [3] Quit ')
+        if x == '1':
+            print('What would you like to order next? ')
+            continue
+        elif x == '2':
+            print('Display Current Order')
+            print(f'Your order price is ${total_price}.')
+            print(f'Your order items are {order_items}.')
+            continue
+        else:
+            break
+            # return total_price
+        # if input("Would you like to order anything else? [y/n]") != 'y':
+        #     return total_price
 
-#     for key, value in order_items.items():
-#         print(key)
-#         print(value)
-#     print(str(order_items) + str(total_price))
-
-# gen_receipt()
+print(order_items)

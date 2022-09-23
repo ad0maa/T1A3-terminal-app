@@ -1,9 +1,10 @@
 McFoo Receipt
-Order Placed: September 22, 2022
+Order Placed: September 23, 2022
 +----------+-----------+
 |   Item   | Price ($) |
 +----------+-----------+
-| Nuggets  |    $7.0   |
+|  Burger  |   $10.5   |
 | -------- |  -------- |
-|  TOTAL   |    $7.0   |
+|  TOTAL   |   $10.5   |
 +----------+-----------+
+Thank you for your order!McFoo Restaurants Australia

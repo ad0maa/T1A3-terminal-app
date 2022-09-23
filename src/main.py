@@ -26,8 +26,9 @@ print('''
            |_|    |_|                         
 \n\n''')
 print(input('Press any key to continue'))
-print('Hello and Welcome to McDoogals\n')
 
+clearing.clear()
+print('Hello and Welcome to McDoogals\n')
 # Program Menu (Show Food menu, make an order, exit)
 
 # Create food menu (dictionary)
@@ -41,7 +42,7 @@ menu = {
 
 # Print out Food Menu
 def print_menu():
-    print('Here is today\'s menu: ')
+    print('Today\'s menu is: ')
     for food, price in menu.items():
         print (food, '- $',price)
 
@@ -55,42 +56,54 @@ def print_menu():
 
 order_items = {}
 total_price = 0
+delivery = False
 
 def order_food(order_items, total_price):
+    print('\nWhat would you like to order today?')
     while True:
-        print('\nWhat would you like to order today?')
         order_req = input()
         if order_req in menu:
             sub_total = menu[order_req]
             total_price += sub_total
             order_items.update({order_req : sub_total})
-            print(f'Your order price is ${total_price}.')
-            print(f'Your order items are {order_items}.')
-            if input("Would you like to order anything else? [y/n]") != 'y':
+
+            
+            x = input('Would you like to [1] Order More? [2] Display Current Order? [3] Quit ')
+            if x == '1':
+                print('What would you like to order next? ')
+                continue
+            elif x == '2':
+                print('Display Current Order')
+                print(f'Your order price is ${total_price}.')
+                print(f'Your order items are {order_items}.')
+                continue
+            else:
                 return total_price
+            # if input("Would you like to order anything else? [y/n]") != 'y':
+            #     return total_price
     
 
 
 
 # Ask if Delivery, add delivery fee to the order
 
-def pickup_delivery(total_price):
+
+
+def pickup_delivery():
+    global total_price, delivery
     x = input('Is your order delivery or pickup?')
     if x == 'delivery':
         total_price += 7.50
         print('$7.50 delivery fee has been added to your order.')
         print(f'Your total including delivery is ${total_price}')
-        delivery = True # THIS NEEDS TO WORK
-        return delivery
-    else: print(f'Your total is ${total_price}')
-    return
+        delivery = True
 
+    else: print(f'Your total is ${total_price}')
+
+
+# print(delivery)
 
 # Produce a receipt and output receipt to a text file
-
-delivery = False
-clearing.clear()
-
 
 def print_receipt():
     global table 
@@ -98,10 +111,13 @@ def print_receipt():
     for k,v in order_items.items():
         table.add_row([k,'$' + str(v)])
     table.add_row(['-'* 8,'-' * 8])
-    if delivery == True:
+    if delivery is True:
         table.add_row(['DELIVERY', '$7.50'])
         table.add_row(['-'* 8,'-' * 8])
-    table.add_row(['TOTAL', '$' + str(total_price)])
+        table.add_row(['TOTAL', '$' + str(total_price) ])
+
+    else:
+        table.add_row(['TOTAL', '$' + str(total_price)])
     print(table)
     print('Your total bill amount is $', total_price)
     return
@@ -113,6 +129,8 @@ def file_receipt():
         f.write('McFoo Receipt\n')
         f.write(f'Order Placed: {today.strftime("%B %d, %Y")}\n')
         f.write(str(table))
+        f.write('\nThank you for your order!')
+        f.write('McFoo Restaurants Australia')
 
 
 # Ask 
@@ -134,11 +152,12 @@ def file_receipt():
 
 # gen_receipt()
 
-print_menu()
-total_price = order_food(order_items, total_price)
-pickup_delivery(total_price)
-print_receipt()
-file_receipt()
+if __name__ == '__main__':
+    print_menu()
+    total_price = order_food(order_items, total_price)
+    pickup_delivery()
+    print_receipt()
+    file_receipt()
 
 now = datetime.now()
 now.time()
