@@ -3,7 +3,7 @@
 from ast import For
 from datetime import datetime, date, timedelta
 from prettytable import PrettyTable
-# import clearing
+import clearing
 
 
 print('''
@@ -28,7 +28,8 @@ print('''
 print(input('Press any key to continue'))
 
 # clearing.clear()
-print('Hello and Welcome to McDoogals\n')
+print('Hello and Welcome to Mcfoo\'s Ordering System')
+print('How can we help you today?\n')
 # Program Menu (Show Food menu, make an order, exit)
 
 # Create food menu (dictionary)
@@ -40,11 +41,23 @@ menu = {
     'Soda' : 2.00
 }
 
+
+
+def main_menu():
+    print('[1] View Menu')
+    print('[2] Make an Order')
+    print('[3] Finalize Order')
+    print('[4] Clear Order')
+    print('[0] Quit Application')
+
 # Print out Food Menu
 def print_menu():
-    print('Today\'s menu is: ')
+    print('Today\'s menu: ')
+    i = 1
     for food, price in menu.items():
-        print (food, '- $',price)
+        # i = food[i]
+        print (f'{i}.', food, '- $',price)
+        i += 1
 
 # Ask 'Are you ready to order?'
 
@@ -58,8 +71,9 @@ order_items = []
 total_price = 0
 delivery = False
 
-def order_food(order_items, total_price):
+def order_food():
     print('\nWhat would you like to order today?')
+    global order_items, total_price
     while True:
         order_req = input()
         if order_req in menu:
@@ -67,18 +81,18 @@ def order_food(order_items, total_price):
             total_price += sub_total
             order_items.append([order_req, sub_total])
             # order_items.update({order_req : sub_total})
-
-            x = input('Would you like to [1] Order More? [2] Display Current Order? [3] Quit ')
-            if x == '1':
-                print('What would you like to order next? ')
-                continue
-            elif x == '2':
-                print('Display Current Order')
-                print(f'Your order price is ${total_price}.')
-                print(f'Your order items are {order_items}.')
-                continue
-            else:
-                return total_price
+            while True:
+                x = input('Would you like to \n[1] Add more items to order \n[2] Display Current Order \n[3] Back to Menu ')
+                if x == '1':
+                    print('What would you like to order next? ')
+                    break
+                elif x == '2':
+                    print(f'You have ordered {order_items}.')
+                    print(f'Your current total is ${total_price}.')
+                    continue
+                else:
+                    clearing.clear()
+                    return total_price
 
 
 # Ask if Delivery, add delivery fee to the order
@@ -87,7 +101,7 @@ def order_food(order_items, total_price):
 
 def pickup_delivery():
     global total_price, delivery
-    x = input('Is your order delivery or pickup?')
+    x = input('Is your order delivery or pickup?\n')
     if x == 'delivery':
         total_price += 7.50
         print('$7.50 delivery fee has been added to your order.')
@@ -121,12 +135,16 @@ def print_receipt():
 # today = date.today()
 
 def file_receipt():
-    with open('receipt.txt', 'w') as f:
-        f.write('McFoo Receipt\n')
-        f.write('Order Placed: '+ datetime.now().strftime('%B %d, %Y %H:%M:%S') + '\n')
-        f.write(str(table))
-        f.write('\nThank you for your order!')
-        f.write('\nMcFoo Restaurants Australia')
+    print('Would you like to store your receipt in a file? \n[1] Yes [2] No')
+    x = input()
+
+    if x == 1:
+        with open('receipt.txt', 'w') as f:
+            f.write('McFoo Receipt\n')
+            f.write('Order Placed: '+ datetime.now().strftime('%B %d, %Y %H:%M:%S') + '\n')
+            f.write(str(table))
+            f.write('\nThank you for your order!')
+            f.write('\nMcFoo Restaurants Australia')
 
 
 # Ask 
@@ -156,11 +174,38 @@ def ready_time():
 
 # gen_receipt()
 
-if __name__ == '__main__':
-    print_menu()
-    total_price = order_food(order_items, total_price)
-    pickup_delivery()
-    print_receipt()
-    file_receipt()
-    ready_time()
+# if __name__ == '__main__':
+#     print_menu()
+#     total_price = order_food(order_items, total_price)
+#     pickup_delivery()
+#     print_receipt()
+#     file_receipt()
+#     ready_time()
 
+
+
+main_menu()
+option = int(input('Enter your Option: '))
+
+while option != 0:
+    if option == 1:
+        clearing.clear()
+        print_menu()
+    elif option == 2:
+        order_food()
+    elif option == 3:       
+        pickup_delivery()
+        print_receipt()
+        file_receipt()
+        ready_time()
+    elif option == 4:
+        order_items = []
+        total_price = 0
+        delivery = False
+    else:
+        print('Invalid option')
+    print()
+    main_menu()
+    option = int(input('Enter your option: '))
+
+print("Thank you for choosing McFoo for your calorie fix today!")
