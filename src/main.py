@@ -1,7 +1,7 @@
 
 # Welcome Message
 from ast import For
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 from prettytable import PrettyTable
 import clearing
 
@@ -79,9 +79,6 @@ def order_food(order_items, total_price):
                 continue
             else:
                 return total_price
-            # if input("Would you like to order anything else? [y/n]") != 'y':
-            #     return total_price
-    
 
 
 
@@ -107,7 +104,7 @@ def pickup_delivery():
 
 def print_receipt():
     global table 
-    table = PrettyTable(['Item', 'Price ($)'])
+    table = PrettyTable(['Item', 'Price'])
     for food,price in order_items:
         table.add_row([food,'$' + str(price)])
     table.add_row(['-'* 8,'-' * 8])
@@ -122,15 +119,15 @@ def print_receipt():
     print('Your total bill amount is $', total_price)
     return
 
-today = date.today()
+# today = date.today()
 
 def file_receipt():
     with open('receipt.txt', 'w') as f:
         f.write('McFoo Receipt\n')
-        f.write(f'Order Placed: {today.strftime("%B %d, %Y")}\n')
+        f.write('Order Placed: '+ datetime.now().strftime('%B %d, %Y %H:%M:%S') + '\n')
         f.write(str(table))
         f.write('\nThank you for your order!')
-        f.write('McFoo Restaurants Australia')
+        f.write('\nMcFoo Restaurants Australia')
 
 
 # Ask 
@@ -159,6 +156,12 @@ if __name__ == '__main__':
     print_receipt()
     file_receipt()
 
-now = datetime.now()
-now.time()
-print('Your order will be ready at ', now.time())
+now = datetime.now().strftime("%Y-%m-%d, %H:%M")
+pickup_time = datetime.now() + timedelta(minutes=20)
+delivery_time = datetime.now() + timedelta(minutes=40)
+
+
+
+print('The time currently is', now.time())
+print('Your order will be ready for pickup at', pickup_time)
+print('Your order will be delivered at approximately', delivery_time)
