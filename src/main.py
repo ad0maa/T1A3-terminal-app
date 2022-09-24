@@ -71,6 +71,34 @@ order_items = []
 total_price = 0
 delivery = False
 
+
+def new_order():
+    print('\nWhat would you like to order today?')
+    global order_items, total_price
+    while True:
+        order_req = int(input()) - 1
+        for index, (key, value) in enumerate(menu.items()):
+            if index == order_req:
+                sub_total = value
+                total_price += sub_total
+                order_items.append([key, sub_total])
+                print(order_items, total_price)
+                while True:
+                    x = input('Would you like to \n[1] Add more items to order \n[2] Display Current Order \n[3] Back to Menu ')
+                    if x == '1':
+                        print('What would you like to order next? ')
+                        break
+                    elif x == '2':
+                        print('You have ordered: ')
+                        for food, price in order_items:
+                            print(food + ' $' + str(price))
+                        print(f'Your current total is ${total_price}.')
+                        continue
+                    else:
+                        clearing.clear()
+                        return total_price
+
+
 def order_food():
     print('\nWhat would you like to order today?')
     global order_items, total_price
@@ -87,7 +115,9 @@ def order_food():
                     print('What would you like to order next? ')
                     break
                 elif x == '2':
-                    print(f'You have ordered {order_items}.')
+                    print('You have ordered: ')
+                    for food, price in order_items:
+                        print(food + ' $' + str(price))
                     print(f'Your current total is ${total_price}.')
                     continue
                 else:
@@ -192,7 +222,7 @@ while option != 0:
         clearing.clear()
         print_menu()
     elif option == 2:
-        order_food()
+        new_order()
     elif option == 3:       
         pickup_delivery()
         print_receipt()
