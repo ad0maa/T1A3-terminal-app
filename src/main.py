@@ -43,16 +43,37 @@ menu = {
 
 
 
-def main_menu():
+def main():
     print('[1] View Menu')
     print('[2] Make an Order')
-    print('[3] Finalize Order')
-    print('[4] Clear Order')
+    print('[3] View Current Order')
+    print('[4] Finalize Order')
+    print('[5] Clear Order')
     print('[0] Quit Application')
+    option = int(input('Enter your Option: '))
+    while option != 0:
+        if option == 1:
+            print_menu()
+        elif option == 2:
+            new_order()
+        elif option == 3:
+            view_order()
+        elif option == 4:       
+            pickup_delivery()
+            print_receipt()
+            file_receipt()
+            ready_time()
+        elif option == 5:
+            clear_order()
+        else:
+            print('Invalid option')
+        print()
+        main()
+        option = int(input('Enter your option: '))
 
 # Print out Food Menu
 def print_menu():
-    print('Today\'s menu: ')
+    print('\nToday\'s menu: ')
     i = 1
     for food, price in menu.items():
         # i = food[i]
@@ -77,52 +98,68 @@ def new_order():
     global order_items, total_price
     while True:
         order_req = int(input()) - 1
-        for index, (key, value) in enumerate(menu.items()):
-            if index == order_req:
-                sub_total = value
-                total_price += sub_total
-                order_items.append([key, sub_total])
-                print(order_items, total_price)
-                while True:
-                    x = input('Would you like to \n[1] Add more items to order \n[2] Display Current Order \n[3] Back to Menu ')
-                    if x == '1':
-                        print('What would you like to order next? ')
-                        break
-                    elif x == '2':
-                        print('You have ordered: ')
-                        for food, price in order_items:
-                            print(food + ' $' + str(price))
-                        print(f'Your current total is ${total_price}.')
-                        continue
-                    else:
-                        clearing.clear()
-                        return total_price
+        if order_req < len(menu):
+            for index, (key, value) in enumerate(menu.items()):
+                if index == order_req:
+                    sub_total = value
+                    total_price += sub_total
+                    order_items.append([key, sub_total])
+                    print(f'{key} added to order.')
+                    while True:
+                        x = input('Would you like to:\n[1] Add more items to order \n[2] Display current order \n[3] Back to Menu ')
+                        if x == '1':
+                            print('What would you like to order next? ')
+                            break
+                        elif x == '2':
+                            view_order()
+                            continue
+                        else:
+                            return total_price
+        else:
+            print('invalid input')
 
 
-def order_food():
-    print('\nWhat would you like to order today?')
-    global order_items, total_price
-    while True:
-        order_req = input()
-        if order_req in menu:
-            sub_total = menu[order_req]
-            total_price += sub_total
-            order_items.append([order_req, sub_total])
-            # order_items.update({order_req : sub_total})
-            while True:
-                x = input('Would you like to \n[1] Add more items to order \n[2] Display Current Order \n[3] Back to Menu ')
-                if x == '1':
-                    print('What would you like to order next? ')
-                    break
-                elif x == '2':
-                    print('You have ordered: ')
-                    for food, price in order_items:
-                        print(food + ' $' + str(price))
-                    print(f'Your current total is ${total_price}.')
-                    continue
-                else:
-                    clearing.clear()
-                    return total_price
+def view_order():
+    if len(order_items) == 0:
+        print('You have no items in your order.')
+    else:
+        print('\nYou have ordered:\n')
+        for food, price in order_items:
+            print(food + ' $' + str(price))
+        print(f'Your current total is ${total_price}\n')
+
+
+def clear_order():
+    global order_items, total_price, delivery
+    order_items = []
+    total_price = 0
+    delivery = False
+    print('\nOrder cleared')
+
+# def order_food():
+#     print('\nWhat would you like to order today?')
+#     global order_items, total_price
+#     while True:
+#         order_req = input()
+#         if order_req in menu:
+#             sub_total = menu[order_req]
+#             total_price += sub_total
+#             order_items.append([order_req, sub_total])
+#             # order_items.update({order_req : sub_total})
+#             while True:
+#                 x = input('Would you like to \n[1] Add more items to order \n[2] Display Current Order \n[3] Back to Menu ')
+#                 if x == '1':
+#                     print('What would you like to order next? ')
+#                     break
+#                 elif x == '2':
+#                     print('You have ordered: ')
+#                     for food, price in order_items:
+#                         print(food + ' $' + str(price))
+#                     print(f'Your current total is ${total_price}.')
+#                     continue
+#                 else:
+#                     clearing.clear()
+#                     return total_price
 
 
 # Ask if Delivery, add delivery fee to the order
@@ -131,8 +168,8 @@ def order_food():
 
 def pickup_delivery():
     global total_price, delivery
-    x = input('Is your order delivery or pickup?\n')
-    if x == 'delivery':
+    x = int(input('Is your order [1] delivery or [2] pickup? '))
+    if x == 1:
         total_price += 7.50
         print('$7.50 delivery fee has been added to your order.')
         print(f'Your total including delivery is ${total_price}')
@@ -166,8 +203,7 @@ def print_receipt():
 
 def file_receipt():
     print('Would you like to store your receipt in a file? \n[1] Yes [2] No')
-    x = input()
-
+    x = int(input())
     if x == 1:
         with open('receipt.txt', 'w') as f:
             f.write('McFoo Receipt\n')
@@ -175,7 +211,6 @@ def file_receipt():
             f.write(str(table))
             f.write('\nThank you for your order!')
             f.write('\nMcFoo Restaurants Australia')
-
 
 # Ask 
 
@@ -204,7 +239,8 @@ def ready_time():
 
 # gen_receipt()
 
-# if __name__ == '__main__':
+if __name__ == '__main__':
+    main()
 #     print_menu()
 #     total_price = order_food(order_items, total_price)
 #     pickup_delivery()
@@ -215,27 +251,6 @@ def ready_time():
 
 
 main_menu()
-option = int(input('Enter your Option: '))
 
-while option != 0:
-    if option == 1:
-        clearing.clear()
-        print_menu()
-    elif option == 2:
-        new_order()
-    elif option == 3:       
-        pickup_delivery()
-        print_receipt()
-        file_receipt()
-        ready_time()
-    elif option == 4:
-        order_items = []
-        total_price = 0
-        delivery = False
-    else:
-        print('Invalid option')
-    print()
-    main_menu()
-    option = int(input('Enter your option: '))
 
 print("Thank you for choosing McFoo for your calorie fix today!")

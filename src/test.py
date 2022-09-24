@@ -1,65 +1,12 @@
-from ast import For
-from datetime import datetime, date
-from prettytable import PrettyTable
-import clearing
+def file_receipt():
+    print('Would you like to store your receipt in a file? \n[1] Yes [2] No')
+    x = input()
+    if x == 1:
+        with open('receipt.txt', 'w') as f:
+            f.write('McFoo Receipt\n')
+            # f.write('Order Placed: '+ datetime.now().strftime('%B %d, %Y %H:%M:%S') + '\n')
+            # f.write(str(table))
+            f.write('\nThank you for your order!')
+            f.write('\nMcFoo Restaurants Australia')
 
-
-menu = {
-    'Chips': 4.50,
-    'Nuggets' : 7.00,
-    'Burger' : 10.50,
-    'Soda' : 2.00
-}
-
-order_items = []
-total_price = 0
-delivery = False
-
-
-
-print('\nWhat would you like to order today?')
-
-while True:
-    order_req = input()
-    if order_req in menu:
-        sub_total = menu[order_req]
-        total_price += sub_total
-        order_items.append([order_req, sub_total])
-        # order_items.update({order_req : sub_total})
-
-        x = input('Would you like to [1] Order More? [2] Display Current Order? [3] Quit ')
-        if x == '1':
-            print('What would you like to order next? ')
-            continue
-        elif x == '2':
-            print('Display Current Order')
-            print(f'Your order price is ${total_price}.')
-            print(f'Your order items are {order_items}.')
-            continue
-        else:
-            break
-            # return total_price
-        # if input("Would you like to order anything else? [y/n]") != 'y':
-        #     return total_price
-
-
-def print_receipt():
-    global table 
-    table = PrettyTable(['Item', 'Price ($)'])
-    for food,price in order_items:
-        table.add_row([food,'$' + str(price)])
-    table.add_row(['-'* 8,'-' * 8])
-    if delivery is True:
-        table.add_row(['DELIVERY', '$7.50'])
-        table.add_row(['-'* 8,'-' * 8])
-        table.add_row(['TOTAL', '$' + str(total_price) ])
-
-    else:
-        table.add_row(['TOTAL', '$' + str(total_price)])
-    print(table)
-    print('Your total bill amount is $', total_price)
-    return
-
-print_receipt()
-print(order_items)
-print(total_price)
+file_receipt()
