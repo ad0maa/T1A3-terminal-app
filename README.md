@@ -21,6 +21,7 @@
 Before cloning and running the McFoo Food Ordering Application you need to make sure you have the following installed on your system.
 
 - Python - Available for download - [Here](https://www.python.org/downloads/release/python-3107/)
+- Git - Available for download - [Here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 1. In your preffered command line application run the following command in a directory of you choice.
     
