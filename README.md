@@ -8,14 +8,38 @@
 
 ### WDA2022-02
 ---
-## **McFoo Delivery Application**
+## **McFoo Food Ordering Application**
 
 ## Links
 ### [GitHub Repository](https://github.com/ad0maa/T1A3-terminal-app)
-### [Video Presentation](https://www.youtube.com)
+### [Video Presentation](https://youtu.be/bEBTNi3X0CY)
 ### [Trello Board](https://trello.com/b/5XUqSFbA/t1a3-terminal-application)
 ---
+## Installation Instructions
 
+### Requirements
+Before cloning and running the McFoo Food Ordering Application you need to make sure you have the following installed on your system.
+
+- Python - Available for download - [Here](https://www.python.org/downloads/release/python-3107/)
+
+1. In your preffered command line application run the following command in a directory of you choice.
+    
+```bash
+git clone git@github.com:ad0maa/T1A3-terminal-app.git
+```
+
+2. Next you must change into the src directory within the folder. Run the following command.
+```bash 
+cd T1A3-terminal-app/src
+```
+3. Finally, run the following command to execute the installation script.
+```bash
+bash install.sh
+```
+
+If you've successfully followed those steps, you should be seeing the application splash screen. Enjoy!
+
+---
 ## Features
 
 ### Food Menu and Ordering
@@ -57,6 +81,7 @@ Below are some progress pictures from my Trello board.
 <img align="center" width="100%" src="docs/trello1.png">
 <img align="center" width="100%" src="docs/trello2.png">
 <img align="center" width="100%" src="docs/trello3.png">
+<img align="center" width="100%" src="docs/trello4.png">
 
 ---
 ## Input Validation
