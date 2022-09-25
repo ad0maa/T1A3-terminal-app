@@ -1,0 +1,12 @@
+McFoo Receipt
+Order Placed: September 25, 2022 21:30:46
++----------+----------+
+|   Item   |  Price   |
++----------+----------+
+| -------- | -------- |
+| DELIVERY |  $7.50   |
+| -------- | -------- |
+|  TOTAL   |   $7.5   |
++----------+----------+
+Thank you for your order!
+McFoo Restaurants Australia
