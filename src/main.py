@@ -17,7 +17,8 @@ menu = {
 
 if __name__ == '__main__':
     modules.splash()
-    print('Hello and Welcome to Mcfoo\'s Ordering System')
+    modules.clearing.clear()
+    print('Hello and welcome to Mcfoo\'s Ordering System')
     print('How can we help you today?\n')
     modules.main_menu()
     print("Thank you for choosing McFoo for your calorie fix today!")

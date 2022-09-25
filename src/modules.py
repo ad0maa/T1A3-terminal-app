@@ -1,7 +1,8 @@
-import main
+# Import
 from datetime import datetime, date, timedelta
+import main
 from prettytable import PrettyTable
-# import clearing
+import clearing
 
 #Variable Declarations:
 order_items = []
@@ -47,7 +48,6 @@ def get_input(prompt):
     """    
     while True:
         i = (input(prompt))
-        # if len(i) == 1 and i.isdigit():
         if i.isdigit():
             return int(i)
         else:
@@ -77,7 +77,7 @@ def main_menu():
             new_order()
         elif option == 3:
             view_order()
-        elif option == 4:       
+        elif option == 4:
             pickup_delivery()
             print_receipt()
             file_receipt()
@@ -91,18 +91,17 @@ def main_menu():
         menu_display()
         option = get_input('Enter your selection: ')
 
-# Print menu items
+# Print food menu items
 
 def print_menu():
     """_Prints out the food menu to the terminal_
     """    
-    print('\nToday\'s menu: ')
+    clearing.clear()
+    print('Today\'s menu: ')
     i = 1
     for food, price in main.menu.items():
-        # i = food[i]
         print (f'{i}.', food, '- $',price)
         i += 1
-    # print('\n')
 
 # Pickup or delivery function
 
@@ -116,7 +115,7 @@ def pickup_delivery():
     while True:
         if x == 1:
             total_price += 7.50
-            print('$7.50 delivery fee has been added to your order.')
+            print('\n$7.50 delivery fee has been added to your order.')
             print(f'Your total including delivery is ${total_price}')
             delivery = True
             break
@@ -134,7 +133,7 @@ def new_order():
     Returns:
         _float_: _total_price_
     """    
-    print('\nWhat would you like to order today?')
+    print('\nPlease enter the menu item number of the food you wish to add to your order: ')
     global order_items, total_price
     while True:
         order_req = get_input('Enter your selection: ') - 1
@@ -156,9 +155,10 @@ def new_order():
                         elif x == '3':
                             print_menu()
                             continue
+                        elif x == '4':
+                            return total_price
                         else:
                             print('Invalid input, please enter a menu item number. (Eg - \'1\')')
-                            return total_price
         else:
             print('Entry not on Menu, please select a valid menu item number. ')
 
@@ -179,12 +179,13 @@ def view_order():
 
 def clear_order():
     """_Used to clear current order_
-    """    
+    """
+    clearing.clear()
     global order_items, total_price, delivery
     order_items = []
     total_price = 0
     delivery = False
-    print('\nOrder cleared\n')
+    print('Order cleared\n')
 
 
 # Produce a receipt and output receipt to a text file
@@ -195,6 +196,7 @@ def print_receipt():
     """    
     global table 
     table = PrettyTable(['Item', 'Price'])
+    clearing.clear()
     for food,price in order_items:
         table.add_row([food,'$' + str(price)])
     table.add_row(['-'* 8,'-' * 8])
@@ -206,12 +208,10 @@ def print_receipt():
     else:
         table.add_row(['TOTAL', '$' + str(total_price)])
     print(table)
-    print('Your total bill amount is $', total_price)
     return
 
 
 # Save Receipt to file
-
 
 def file_receipt():
     """_function to save the receipt to a text file_
