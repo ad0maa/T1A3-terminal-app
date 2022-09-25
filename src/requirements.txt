@@ -1,0 +1,6 @@
+clearing==1.0.0
+DateTime==4.7
+prettytable==3.4.1
+pytz==2022.2.1
+wcwidth==0.2.5
+zope.interface==5.4.0
