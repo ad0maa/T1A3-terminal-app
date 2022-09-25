@@ -114,17 +114,12 @@ def pickup_delivery():
     """    
     global total_price, delivery
     x = get_input('Please select [1] for Delivery or [2] for Pickup. ')
-    while True:
-        if x == 1:
-            total_price += 7.50
-            print('\n$7.50 delivery fee has been added to your order.')
-            print(f'Your total including delivery is ${total_price}')
-            delivery = True
-            break
-        elif x ==2:
-            break
-        else:
-            print('Invalid input, please enter [1] for Delivery or [2] for Pickup.')
+    if x == 1:
+        total_price += 7.50
+        print('\n$7.50 delivery fee has been added to your order.')
+        print(f'Your total including delivery is ${total_price}')
+        delivery = True
+    
 
 # Order placing function
 
