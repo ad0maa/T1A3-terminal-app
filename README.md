@@ -36,7 +36,7 @@ Once the customer has finished their order and selected their delivery option, a
 
 ---
 
-## Implentation Plan
+## Implementation Plan
 
 Originally I had pitched to make a Tic Tac Toe application for this assessment. I spent my first day of production attempting to work out the logic on this project but was overwhelmed by the difficulty, so I had a chat with the educators and decided on a food delivery application instead.
 
