@@ -4,16 +4,15 @@ from prettytable import PrettyTable
 # import clearing
 
 #Variable Declarations:
-
-#food menu
-
 order_items = []
 total_price = 0
 delivery = False
 
 # Splash Screen for Application
-
 def splash():
+    """
+    This function prints out the application splash screen art when application is launched
+    """    
     print('''
      __  __        ______                        
     |  \/  |      |  ____|                       
@@ -33,10 +32,19 @@ def splash():
             | |    | |                         
             |_|    |_|                         
     \n\n''')
-    print(input('Press any key to continue'))
+    print(input('Press Enter to continue'))
 
+# Input Validation
 
 def get_input(prompt):
+    """_This function validates that users have input a valid integer and displays an error message if input is incorrect_
+
+    Args:
+        prompt (_str_): _Allows the function to be reused with different prompts throughout application_
+
+    Returns:
+        _int_: _returns the users input as a valid integer_
+    """    
     while True:
         i = (input(prompt))
         # if len(i) == 1 and i.isdigit():
@@ -45,27 +53,21 @@ def get_input(prompt):
         else:
             print('Invalid input, please enter a menu item number. (Eg - \'1\')')
 
-            
-        # except Exception:
-        #     print('Invalid input, please enter a menu item number. (Eg - \'1\')')
-
-
-        # else:
-        #     if i > 10:
-        #         # break
-        #         return i
-
 # Main Menu Function
 
 def menu_display():
-    print('\n[1] View Menu')
-    print('[2] Make an Order')
+    """_Prints out strings that form the main menu_
+    """    
+    print('\n[1] View Food Menu')
+    print('[2] Place an Order')
     print('[3] View Current Order')
     print('[4] Finalize Order')
     print('[5] Clear Order')
     print('[0] Quit Application')
 
 def main_menu():
+    """_Main menu and flow of application_
+    """    
     menu_display()
     option = get_input('Enter your selection: ')
     while option != 0:
@@ -92,6 +94,8 @@ def main_menu():
 # Print menu items
 
 def print_menu():
+    """_Prints out the food menu to the terminal_
+    """    
     print('\nToday\'s menu: ')
     i = 1
     for food, price in main.menu.items():
@@ -103,20 +107,33 @@ def print_menu():
 # Pickup or delivery function
 
 def pickup_delivery():
+    """_User inputs whether their order is pickup or delivery_
+    _returns True boolean value to delivery for use in other functions._
+    _updates total price with delivery added if applicable_
+    """    
     global total_price, delivery
     x = get_input('Please select [1] for Delivery or [2] for Pickup. ')
-    if x == 1:
-        total_price += 7.50
-        print('$7.50 delivery fee has been added to your order.')
-        print(f'Your total including delivery is ${total_price}')
-        delivery = True
-    # elif x == 2:
-
-
+    while True:
+        if x == 1:
+            total_price += 7.50
+            print('$7.50 delivery fee has been added to your order.')
+            print(f'Your total including delivery is ${total_price}')
+            delivery = True
+            break
+        elif x ==2:
+            break
+        else:
+            print('Invalid input, please enter [1] for Delivery or [2] for Pickup.')
 
 # Order placing function
 
 def new_order():
+    """_Function to add food menu items to order_items variable_
+    _updates total_price when items are added_
+
+    Returns:
+        _float_: _total_price_
+    """    
     print('\nWhat would you like to order today?')
     global order_items, total_price
     while True:
@@ -148,6 +165,8 @@ def new_order():
 
 # Display Current Order
 def view_order():
+    """_Used to display what items have been added to order during use of application_
+    """    
     if len(order_items) == 0:
         print('\nYou have no items in your order.\n')
     else:
@@ -159,6 +178,8 @@ def view_order():
 # Clear current order
 
 def clear_order():
+    """_Used to clear current order_
+    """    
     global order_items, total_price, delivery
     order_items = []
     total_price = 0
@@ -169,6 +190,9 @@ def clear_order():
 # Produce a receipt and output receipt to a text file
 
 def print_receipt():
+    """_function to print receipt to terminal_
+    _different receipt is printed depending if delivery was selected_
+    """    
     global table 
     table = PrettyTable(['Item', 'Price'])
     for food,price in order_items:
@@ -190,8 +214,10 @@ def print_receipt():
 
 
 def file_receipt():
-    print('Would you like to store your receipt in a file? \n[1] Yes [2] No')
-    x = get_input(' ')
+    """_function to save the receipt to a text file_
+    """    
+    print('Would you like to store your receipt in a file? \n[1] Yes [2] No ')
+    x = get_input('')
     if x == 1:
         with open('receipt.txt', 'w') as f:
             f.write('McFoo Receipt\n')
@@ -205,6 +231,8 @@ def file_receipt():
 # Using datetime, give an estimate of when the order will be ready or delivered
 
 def ready_time():
+    """_used to print pickup or delivery time to the terminal_
+    """    
     now = datetime.now()
     pickup_time = now + timedelta(minutes=20)
     delivery_time = now + timedelta(minutes=40)

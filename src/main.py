@@ -1,7 +1,6 @@
 # Import
 import modules
 
-
 # Food Menu Dictionary
 menu = {
     'Chips': 4.50,
